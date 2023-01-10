@@ -1,19 +1,52 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+interface AppProps {
+    color?: string;
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// Method 2 of handling state
+// interface AppState {
+//     counter: number
+// }
+
+// Method 2: Need to include AppState type as second argument
+class App extends React.Component<AppProps> {
+    // Method 1: Override state property defined inside Component
+    state = {
+        counter: 0
+    };
+
+    // Method 2 of handling state
+    // constructor(props: AppProps) {
+    //     super(props);
+
+    //     this.state = {
+    //         counter: 0
+    //     }
+    // }
+
+    onIncrement = (): void => {
+        this.setState({
+            counter: this.state.counter + 1
+        })
+    }
+
+    onDecrement = (): void => {
+        this.setState({
+            counter: this.state.counter - 1
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.onIncrement}>Increment</button>
+                <button onClick={this.onDecrement}>Decrement</button>
+                {this.state.counter}
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<App color="red" />, document.querySelector('#root'));
