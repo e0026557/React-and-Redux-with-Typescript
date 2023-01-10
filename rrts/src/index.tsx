@@ -5,10 +5,19 @@ interface AppProps {
     color?: string;
 }
 
-// Method 2 of handling state
-// interface AppState {
-//     counter: number
+// Functional Component Method
+// annotation for props object (usually an interface)
+// return type annotation (usually JSX.Element)
+// const App = (props: AppProps): JSX.Element => {
+//     return <div>
+//         {props.color}
+//     </div>
 // }
+
+// Method 2 of handling state
+interface AppState {
+    counter: number
+}
 
 // Method 2: Need to include AppState type as second argument
 class App extends React.Component<AppProps> {
